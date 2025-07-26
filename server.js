@@ -11,6 +11,8 @@ app.use(express.static("public"));
 app.use("/calculator-site", express.static(path.join(__dirname, "calculator-site")));
 // ✅ Serve all files from "public" folder
 
+app.use(express.json());
+
 app.post('/api/login',(req,res)=>{
     const {username ,password}=req.body;
     if(username==="john" && password === "1234"){

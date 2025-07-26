@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Static Site</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <h1>Hello from Express Static Server</h1>
-  <button onclick="sayHi()">Click Me</button>
-  <script src="script.js"></script>
+    <h1 style="text-align: center;">login</h1>
+    <div style="display: flex ;justify-content: center; background-color: rgb(92, 20, 116); margin:4px; padding: 10px; border-radius: 10px; color: white">
+        <form id="myform" >
+        <label for="1" >username:</label>
+        <input type="text" id="1" name="username " value="john" >
+        <br>
+        <label for="2">password:</label>
+        <input type="password" id="2" name="password" value="1234">
+        <br>
+        <div style="display: flex; justify-content: center;margin-top: 2px;">
+          <button style="width:100px;color:brown; font-family: 'Times New Roman', Times, serif;font-weight: 900;">login</button>
+        </div>
+    </form>
+    </div>
+    <div id="result"></div>
+    <script>
+        document.getElementById("myform").addEventListener("submit",async function(event){
+            event.preventDefault();
+            const username = document.getElementById("1").value;
+            const password = document.getElementById("2").value;
+            const response = await fetch("https://express-backend-demo-1.onrender.com/api/login",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({username,password})
+            });
+            const result = await response.json();
+            let ele=document.getElementById('result');
+            ele.textContent = await result.message;
+            ele.style.textAlign = "center";
+            ele.style.color = result.success ? "green" : "red";
+            if(result.success) {
+                window.location.href = "https://express-backend-demo-1.onrender.com/calculator-site";
+            }
+        });
+    </script>
+</body>
 </body>
 </html>

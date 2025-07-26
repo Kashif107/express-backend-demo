@@ -4,12 +4,12 @@ const app = express();
 const path = require("path");
 
 // 👇 Serve main static site at "/"
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
+
 
 // 👇 Serve calculator page at "/calculator"
-app.use("/calculator", express.static(path.join(__dirname, "calculator-site")));
+app.use("/calculator-site", express.static(path.join(__dirname, "calculator-site")));
 // ✅ Serve all files from "public" folder
-app.use(express.static("public"));
 
 app.post('/api/login',(req,res)=>{
     const {username ,password}=req.body;

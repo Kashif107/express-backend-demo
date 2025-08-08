@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 
 // 👇 Serve calculator page at "/calculator"
-app.use("/calculator-site", express.static(path.join(__dirname, "calculator-site")));
+app.use("/calculator-site", express.static(path.join(__dirname, "github")));
 // ✅ Serve all files from "public" folder
 
 app.use(express.json());
